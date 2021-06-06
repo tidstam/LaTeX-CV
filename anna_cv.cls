@@ -1,12 +1,11 @@
-% Created by Murat Can Karacabey
+% Created by Anna Tidstam
 % this is inspired by Michael Pollind's Awesome CV 
-% Created from scratch as a much simpler alternative to it to actually learn LaTeX.
-% Might be interpreted as an easier-to-edit or easier-to-understand-what-is-going-on version of it.
-\author{Murat Can Karacabey}
+
+\author{Anna Tidstam}
 \RequirePackage[usenames,dvipsnames]{xcolor} % moved here I guess article class causes option clash with xcolor if used after loading the class
 \LoadClass[11pt]{article}
 \NeedsTeXFormat{LaTeX2e}
-\ProvidesClass{muratcan_cv}[2020/04/15 Muratcan CV Class]
+\ProvidesClass{anna_cv}[2021/06/06 Anna CV Class]
 \RequirePackage[sfdefault]{noto}
 \RequirePackage{etoolbox}
 \RequirePackage{pgffor}
@@ -43,7 +42,7 @@
 
 \hypersetup{
     colorlinks=true,
-    urlcolor=cyan,
+    urlcolor=coolblack,
 }
 
 % View commands
@@ -52,9 +51,10 @@
 % can makebox also be used?
 \newcommand\headerview{
 \begin{minipage}{0.25\linewidth}
-    \profpic{0.22}{images/profilpicture}
+    \profpic{0.18}{images/profilpicture}
 \end{minipage}% 
 \hfill
+  \vspace{0.4cm}
 \begin{minipage}{0.45\linewidth}
     \center \name \\[0.05cm] 
     \contact % address \ mobile \\ mail
@@ -62,7 +62,7 @@
 }
 
 %profilpicture
-
+  \vspace{0.6cm}
 \newsavebox{\picbox}
 \newcommand{\profpic}[2]{%
     \savebox{\picbox}{%
@@ -73,10 +73,10 @@
     path picture={ \node at (path picture bounding box.center)% 
     {\usebox{\picbox}};}]% 
     {};}
-    
+  
 %contactsubviews 
     
-    
+
 \newcommand{\githubview}{\href{\@linkedinaccount}{\faLinkedinSquare\ \footnotesize linkedin}}
 \newcommand{\linkedinview}{\href{\@githubaccount}{\faGithubSquare\ \footnotesize github}}
 
@@ -85,7 +85,7 @@
 }
 
 \newcommand{\contact}{%
-        {\small \@address  \cps \@mobile \\ \@mail%
+        {\small \@address  \cps \@mobile \vspace{0.25em} \\ \@mail \vspace{0.25em} % 
         \\%
         \linkedinview \cps \githubview \\ 
         } % 
@@ -96,7 +96,7 @@
 \newcommand\coverletter[1]{ 
 \\  \coverlettersubview 
 \section{} \vspace{1ex} 
-\textbf{ Dear \@contactperson, \\[0.1cm]}
+\textbf{ Dear \@contactperson, \\[1cm]}
   #1
 }
 
@@ -122,7 +122,7 @@ Position: & \@claimedposition \\
 % Edit section styles
 
 \titleformat{\section}      % Customise the \section command 
-  {\large\bfseries\scshape\raggedright\color{\@themecolor}} % Make the \section headers large (\Large),
+  {\large\color{\@themecolor}} % Make the \section headers large (\Large), bfseries\scshape\raggedright
                                % small capitals (\scshape) and left aligned (\raggedright)
   {}{0em}                      % Can be used to give a prefix to all sections, like 'Section ...'
   {\ruleafter}                           % Can be used to insert code before the heading
@@ -132,7 +132,7 @@ Position: & \@claimedposition \\
 % Textview commands
 
 \newcommand{\experience}[2]{%
-  \mbox { \hspace{1em} \scshape \textbf{#1} }%
+  \mbox { \hspace{1em}  }% \scshape \textbf{#1}
 }
 
 \newcommand{\datetext}[1]{%
@@ -140,15 +140,15 @@ Position: & \@claimedposition \\
 }
 
 \newcommand{\datedexperience}[2]{%
-  \begin{small} \mbox { \hspace{1em} \scshape \textbf{#1} } \end{small} \hfill \datetext{#2}\\[0.01cm] %
+  \begin{small} \mbox { \hspace{1em} \textbf{#1} } \end{small} \hfill \datetext{#2}\\[0.01cm] % \scshape 
 }
 
 \newcommand{\explanation}[1]{%
-    \mbox { \scshape \hspace{1.2em} \footnotesize #1}\\[0.05cm]
+    \mbox {  \hspace{1.2em} \footnotesize  \emph{#1}}\\[0.05cm] %\scshape
 }
 
 \newcommand{\explanationdetail}[1]{%
-    \indent \begin{minipage}{0.96\linewidth} \footnotesize #1 \end{minipage} \\[0.1cm]
+    \indent \begin{minipage}{0.7\linewidth} \fontfamily{qcr}\selectfont \footnotesize #1 \end{minipage} \\[0.2cm]
 }
 
 \newcommand{\itemwithtext}[1]{%
@@ -196,4 +196,4 @@ Position: & \@claimedposition \\
 \newcommand\createfootnote{%
   \renewcommand{\footnotesize}{\fontsize{7pt}{11pt}\selectfont}
     \renewcommand\footnoterule{\rule{0.3\linewidth}{0.5pt}}
-    \let\thefootnote\relax\footnote{\today\ / \href{https://github.com/muratcankaracabey/latex_cv}{source code}}}
+    \let\thefootnote\relax\footnote{\today\ / \href{https://github.com/tidstam/LaTeX-CV}{source code}}}
